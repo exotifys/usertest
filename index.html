@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>For Suanli</title>
+  <title>Para Suanli</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Caveat:wght@400;700&family=Patrick+Hand&family=Quicksand:wght@300;400;600;700&display=swap');
 
@@ -64,6 +64,40 @@
       pointer-events: none;
     }
 
+    /* Lily corner decorations on hero */
+    .hero::after {
+      content: '🌸🌺🌸';
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-size: 2rem;
+      opacity: 0.5;
+      animation: gentleSway 4s ease-in-out infinite;
+    }
+
+    .hero-lilies-left {
+      position: absolute;
+      bottom: 5rem;
+      left: 1rem;
+      font-size: 2.5rem;
+      opacity: 0.4;
+      animation: gentleSway 5s ease-in-out infinite reverse;
+    }
+
+    .hero-lilies-right {
+      position: absolute;
+      top: 5rem;
+      left: 2rem;
+      font-size: 2rem;
+      opacity: 0.35;
+      animation: gentleSway 6s ease-in-out infinite;
+    }
+
+    @keyframes gentleSway {
+      0%, 100% { transform: rotate(-5deg) scale(1); }
+      50% { transform: rotate(5deg) scale(1.05); }
+    }
+
     .hero h1 {
       font-family: 'Dancing Script', cursive;
       font-size: 4rem;
@@ -99,7 +133,7 @@
       animation: bounce 2s ease-in-out infinite;
     }
 
-    /* ===== FLOATING LILIES ===== */
+    /* ===== FLOATING LILIES (more!) ===== */
     .lily {
       position: fixed;
       pointer-events: none;
@@ -116,11 +150,42 @@
       50% { transform: translateY(-80px) rotate(15deg); }
     }
 
+    /* ===== LILY DIVIDERS ===== */
+    .lily-divider {
+      text-align: center;
+      font-size: 1.8rem;
+      padding: 1rem 0;
+      opacity: 0.5;
+      letter-spacing: 0.5rem;
+      background: var(--sand);
+    }
+
     /* ===== TIMELINE SECTION ===== */
     .timeline-section {
       padding: 4rem 2rem;
       background: linear-gradient(180deg, var(--sand) 0%, var(--lily-white) 50%, var(--sand) 100%);
       position: relative;
+    }
+
+    /* Lily accents on timeline section */
+    .timeline-section::before {
+      content: '🌺';
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      font-size: 3rem;
+      opacity: 0.2;
+      animation: gentleSway 7s ease-in-out infinite;
+    }
+
+    .timeline-section::after {
+      content: '🌸';
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      font-size: 3rem;
+      opacity: 0.2;
+      animation: gentleSway 6s ease-in-out infinite reverse;
     }
 
     .timeline-title {
@@ -302,6 +367,24 @@
       position: relative;
     }
 
+    .scratch-section::before {
+      content: '🌺🌸🌺';
+      position: absolute;
+      top: 3rem;
+      font-size: 2.5rem;
+      opacity: 0.3;
+      animation: gentleSway 5s ease-in-out infinite;
+    }
+
+    .scratch-section::after {
+      content: '🌸🌺🌸';
+      position: absolute;
+      bottom: 3rem;
+      font-size: 2.5rem;
+      opacity: 0.3;
+      animation: gentleSway 6s ease-in-out infinite reverse;
+    }
+
     .scratch-instruction {
       font-family: 'Caveat', cursive;
       font-size: 2rem;
@@ -398,6 +481,22 @@
 
     .question-section.revealed {
       opacity: 1;
+    }
+
+    .question-section::before {
+      content: '🌺  🌸  🌺  🌸  🌺';
+      position: absolute;
+      top: 3rem;
+      font-size: 2rem;
+      opacity: 0.25;
+    }
+
+    .question-section::after {
+      content: '🌸  🌺  🌸  🌺  🌸';
+      position: absolute;
+      bottom: 3rem;
+      font-size: 2rem;
+      opacity: 0.25;
     }
 
     .question-text {
@@ -622,10 +721,12 @@
 
   <!-- HERO -->
   <section class="hero">
+    <div class="hero-lilies-left">🌺🌸🌺</div>
+    <div class="hero-lilies-right">🌸🌺</div>
     <h1>Suanli...</h1>
-    <p>I made something for you. Scroll down.</p>
+    <p>Hice algo para ti. Desliza hacia abajo.</p>
     <div class="scroll-hint">
-      Keep scrolling, mi amor
+      Sigue bajando, mi amor
       <span class="arrow">&darr;</span>
     </div>
   </section>
@@ -634,15 +735,15 @@
 
   <!-- TIMELINE -->
   <section class="timeline-section">
-    <h2 class="timeline-title">Our Story So Far</h2>
+    <h2 class="timeline-title">Nuestra Historia</h2>
     <div class="timeline">
 
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="placeholder-img" data-slot="1">📸</div>
-          <h3>The Beginning</h3>
-          <p>Where it all started... the moment I knew you were special.</p>
+          <h3>El Comienzo</h3>
+          <p>Donde todo empezó... el momento en que supe que eras especial.</p>
         </div>
       </div>
 
@@ -650,8 +751,8 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="placeholder-img" data-slot="2">📸</div>
-          <h3>Getting Closer</h3>
-          <p>Every moment with you made me want a thousand more.</p>
+          <h3>Cada Vez Más Cerca</h3>
+          <p>Cada momento contigo me hizo querer mil más.</p>
         </div>
       </div>
 
@@ -659,8 +760,8 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="placeholder-img" data-slot="3">📸</div>
-          <h3>That Smile</h3>
-          <p>The way you light up a room... you don't even realize it.</p>
+          <h3>Esa Sonrisa</h3>
+          <p>La forma en que iluminas un lugar... ni te das cuenta.</p>
         </div>
       </div>
 
@@ -668,8 +769,8 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="placeholder-img" data-slot="4">📸</div>
-          <h3>Us</h3>
-          <p>I stopped wondering "what if" and started hoping "what's next."</p>
+          <h3>Nosotros</h3>
+          <p>Dejé de preguntarme "¿y si...?" y empecé a desear "¿qué sigue?"</p>
         </div>
       </div>
 
@@ -677,8 +778,8 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="placeholder-img" data-slot="5">📸</div>
-          <h3>Right Now</h3>
-          <p>And that brings us here... keep scrolling.</p>
+          <h3>Ahora Mismo</h3>
+          <p>Y eso nos trae aquí... sigue bajando.</p>
         </div>
       </div>
 
@@ -686,33 +787,35 @@
   </section>
 
   <div class="pr-stripe"></div>
+  <div class="lily-divider">🌸 🌺 🌸 🌺 🌸 🌺 🌸</div>
 
   <!-- CHALKBOARD TRANSITION -->
   <section class="chalkboard-section">
     <div class="chalk-text">
-      You know how you're going to teach kids<br>
-      that <span class="highlight">anything is possible</span>? <br><br>
-      Well, <span class="name">Suanli</span>...<br>
-      You already taught me that. <br><br>
+      Tú sabes que vas a enseñarle a los niños<br>
+      que <span class="highlight">todo es posible</span>... <br><br>
+      Pues, <span class="name">Suanli</span>...<br>
+      Tú ya me lo enseñaste a mí. <br><br>
       <span class="chalk-doodle">🌺 ✏️ 📚 🍎 🌺</span>
     </div>
   </section>
 
+  <div class="lily-divider">🌺 🌸 🌺 🌸 🌺 🌸 🌺</div>
   <div class="pr-stripe"></div>
 
   <!-- SCRATCH OFF -->
   <section class="scratch-section" id="scratchSection">
-    <div class="scratch-instruction">Scratch below to reveal something...</div>
+    <div class="scratch-instruction">Raspa aquí abajo para revelar algo...</div>
     <div class="scratch-container" id="scratchContainer">
       <div class="scratch-reveal">
         <div class="lilies">🌸🌺🌸</div>
-        <h2>I have a<br>question<br>for you...</h2>
+        <h2>Tengo una<br>pregunta<br>para ti...</h2>
         <div class="lilies">🌺🌸🌺</div>
-        <p class="sub">Keep scrolling &darr;</p>
+        <p class="sub">Sigue bajando &darr;</p>
       </div>
       <canvas id="scratchCanvas"></canvas>
     </div>
-    <div class="scratch-hint" id="scratchHint">Use your finger to scratch!</div>
+    <div class="scratch-hint" id="scratchHint">Usa tu dedo para raspar!</div>
   </section>
 
   <div class="pr-stripe"></div>
@@ -721,38 +824,38 @@
   <section class="question-section" id="questionSection">
     <div class="question-text" id="questionText">
       <span class="name">Suanli,</span>
-      Will you be my girlfriend? 🌺
+      ¿Quieres ser mi novia? 🌺
     </div>
     <div class="buttons-container" id="buttonsContainer">
-      <button class="btn-yes" id="btnYes">Yes!</button>
+      <button class="btn-yes" id="btnYes">¡Sí!</button>
       <button class="btn-no" id="btnNo">No</button>
     </div>
   </section>
 
   <!-- CELEBRATION -->
   <div class="celebration" id="celebration">
-    <p>I knew you'd say...</p>
-    <h1>YES!</h1>
+    <p>Sabía que dirías...</p>
+    <h1>¡SÍ!</h1>
     <div class="big-heart">❤️</div>
     <p>Te quiero, Suanli 🌺</p>
-    <div class="lilies-row">🌸🌺🌸🌺🌸</div>
+    <div class="lilies-row">🌸🌺🌸🌺🌸🌺🌸</div>
     <p style="font-size:1.3rem; margin-top:1rem; opacity:0.7; font-family:'Patrick Hand',cursive;">
-      From this moment on, it's you and me.
+      Desde este momento, somos tú y yo.
     </p>
   </div>
   <canvas id="confettiCanvas"></canvas>
 
   <script>
-    // ===== FLOATING BACKGROUND =====
+    // ===== FLOATING BACKGROUND (more lilies!) =====
     const bgContainer = document.getElementById('floatingBg');
-    const symbols = ['🌺', '🌸', '💕', '✨', '🌿'];
-    for (let i = 0; i < 15; i++) {
+    const symbols = ['🌺', '🌸', '🌺', '💕', '🌸', '✨', '🌿', '🌺', '🌸'];
+    for (let i = 0; i < 30; i++) {
       const span = document.createElement('span');
       span.textContent = symbols[i % symbols.length];
       span.style.left = Math.random() * 100 + '%';
-      span.style.animationDuration = (15 + Math.random() * 20) + 's';
+      span.style.animationDuration = (12 + Math.random() * 20) + 's';
       span.style.animationDelay = (Math.random() * 15) + 's';
-      span.style.fontSize = (1 + Math.random() * 1.5) + 'rem';
+      span.style.fontSize = (1 + Math.random() * 2) + 'rem';
       bgContainer.appendChild(span);
     }
 
@@ -796,12 +899,12 @@
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Draw pattern on scratch surface
+      // Draw lily pattern on scratch surface
       ctx.fillStyle = 'rgba(255,255,255,0.15)';
       ctx.font = '30px serif';
-      for (let x = 0; x < canvas.width; x += 60) {
-        for (let y = 0; y < canvas.height; y += 60) {
-          ctx.fillText('🌺', x + (y % 120 === 0 ? 0 : 30), y);
+      for (let x = 0; x < canvas.width; x += 50) {
+        for (let y = 0; y < canvas.height; y += 50) {
+          ctx.fillText(y % 100 === 0 ? '🌺' : '🌸', x + (y % 100 === 0 ? 0 : 25), y);
         }
       }
 
@@ -809,9 +912,9 @@
       ctx.fillStyle = 'white';
       ctx.font = "bold 28px 'Patrick Hand', cursive";
       ctx.textAlign = 'center';
-      ctx.fillText('Scratch me! ✨', canvas.width / 2, canvas.height / 2 - 10);
+      ctx.fillText('¡Raspa aquí! ✨', canvas.width / 2, canvas.height / 2 - 10);
       ctx.font = "22px 'Patrick Hand', cursive";
-      ctx.fillText('Use your finger 👆', canvas.width / 2, canvas.height / 2 + 25);
+      ctx.fillText('Usa tu dedo 👆', canvas.width / 2, canvas.height / 2 + 25);
     }
 
     function scratch(x, y) {
@@ -906,8 +1009,8 @@
     const buttonsContainer = document.getElementById('buttonsContainer');
     let noAttempts = 0;
     const noPhrases = [
-      "No", "Are you sure?", "Really??", "Think again!",
-      "Nope, try again 😏", "Can't catch me!", "Wrong answer 😜"
+      "No", "¿Estás segura?", "¿¿En serio??", "¡Piénsalo bien!",
+      "Intenta otra vez 😏", "¡No me atrapas!", "Respuesta incorrecta 😜"
     ];
 
     function dodgeNo() {
@@ -951,7 +1054,6 @@
     function celebrate() {
       document.getElementById('celebration').classList.add('active');
       launchConfetti();
-      // Vibrate if supported (iPad won't, but Android will)
       if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
     }
 
@@ -964,7 +1066,7 @@
 
       const confettiPieces = [];
       const colors = ['#f4845f', '#f6a560', '#2ec4b6', '#e8726c', '#f2c6de', '#ff6b6b', '#ffd93d', '#6bcb77'];
-      const emojis = ['🌺', '💕', '✨', '🌸', '❤️', '🎉'];
+      const emojis = ['🌺', '💕', '✨', '🌸', '❤️', '🎉', '🌺', '🌸'];
 
       for (let i = 0; i < 150; i++) {
         confettiPieces.push({
@@ -977,7 +1079,7 @@
           rotationSpeed: (Math.random() - 0.5) * 10,
           speedX: (Math.random() - 0.5) * 4,
           speedY: Math.random() * 4 + 2,
-          emoji: Math.random() > 0.7 ? emojis[Math.floor(Math.random() * emojis.length)] : null
+          emoji: Math.random() > 0.6 ? emojis[Math.floor(Math.random() * emojis.length)] : null
         });
       }
 
