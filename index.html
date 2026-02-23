@@ -47,7 +47,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #fce4ec 0%, #fff3e0 30%, #e0f7fa 70%, #f3e5f5 100%);
+      background: linear-gradient(135deg, #fce4ec 0%, #fff3e0 20%, #ffe0b2 40%, #e0f7fa 70%, #f3e5f5 100%);
       position: relative;
       overflow: hidden;
       text-align: center;
@@ -628,7 +628,7 @@
 
     /* ===== PR FLAG COLORS ACCENT ===== */
     .pr-stripe {
-      height: 4px;
+      height: 6px;
       background: linear-gradient(90deg,
         #ed1c24 0% 20%,
         #fff 20% 40%,
@@ -637,6 +637,39 @@
         #ed1c24 80% 100%
       );
       width: 100%;
+    }
+
+    /* ===== PR BANNER SECTION ===== */
+    .pr-banner {
+      background: linear-gradient(135deg, #0065b1 0%, #003d6b 100%);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pr-banner::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0; height: 0;
+      border-top: 40px solid transparent;
+      border-bottom: 40px solid transparent;
+      border-left: 50px solid #ed1c24;
+    }
+
+    .pr-banner .pr-text {
+      font-family: 'Caveat', cursive;
+      color: white;
+      font-size: 1.6rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .pr-banner .pr-emojis {
+      font-size: 1.5rem;
+      margin-top: 0.3rem;
     }
 
     /* ===== ANIMATIONS ===== */
@@ -724,7 +757,7 @@
     <div class="hero-lilies-left">🌺🌸🌺</div>
     <div class="hero-lilies-right">🌸🌺</div>
     <h1>Suanli...</h1>
-    <p>Hice algo para ti. Desliza hacia abajo.</p>
+    <p>Hice algo para ti. Desliza hacia abajo. 🇵🇷</p>
     <div class="scroll-hint">
       Sigue bajando, mi amor
       <span class="arrow">&darr;</span>
@@ -741,7 +774,7 @@
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <div class="placeholder-img" data-slot="1">📸</div>
+          <img src="photo1.jpg" alt="Nosotros">
           <h3>El Comienzo</h3>
           <p>Donde todo empezó... el momento en que supe que eras especial.</p>
         </div>
@@ -750,7 +783,7 @@
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <div class="placeholder-img" data-slot="2">📸</div>
+          <img src="photo2.jpg" alt="Nosotros">
           <h3>Cada Vez Más Cerca</h3>
           <p>Cada momento contigo me hizo querer mil más.</p>
         </div>
@@ -759,7 +792,7 @@
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <div class="placeholder-img" data-slot="3">📸</div>
+          <img src="photo3.jpg" alt="Nosotros">
           <h3>Esa Sonrisa</h3>
           <p>La forma en que iluminas un lugar... ni te das cuenta.</p>
         </div>
@@ -768,7 +801,7 @@
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <div class="placeholder-img" data-slot="4">📸</div>
+          <img src="photo4.jpg" alt="Nosotros">
           <h3>Nosotros</h3>
           <p>Dejé de preguntarme "¿y si...?" y empecé a desear "¿qué sigue?"</p>
         </div>
@@ -777,7 +810,7 @@
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <div class="placeholder-img" data-slot="5">📸</div>
+          <img src="photo5.jpg" alt="Nosotros">
           <h3>Ahora Mismo</h3>
           <p>Y eso nos trae aquí... sigue bajando.</p>
         </div>
@@ -785,6 +818,14 @@
 
     </div>
   </section>
+
+  <div class="pr-stripe"></div>
+
+  <!-- PR BANNER -->
+  <div class="pr-banner">
+    <div class="pr-text">De la isla del encanto... para mi encanto</div>
+    <div class="pr-emojis">🇵🇷 🌴 🌺 🐸 🌴 🇵🇷</div>
+  </div>
 
   <div class="pr-stripe"></div>
   <div class="lily-divider">🌸 🌺 🌸 🌺 🌸 🌺 🌸</div>
@@ -839,6 +880,7 @@
     <div class="big-heart">❤️</div>
     <p>Te quiero, Suanli 🌺</p>
     <div class="lilies-row">🌸🌺🌸🌺🌸🌺🌸</div>
+    <p style="font-size:2.5rem; margin:0.5rem 0;">🇵🇷🌴🐸🌴🇵🇷</p>
     <p style="font-size:1.3rem; margin-top:1rem; opacity:0.7; font-family:'Patrick Hand',cursive;">
       Desde este momento, somos tú y yo.
     </p>
@@ -848,7 +890,7 @@
   <script>
     // ===== FLOATING BACKGROUND (more lilies!) =====
     const bgContainer = document.getElementById('floatingBg');
-    const symbols = ['🌺', '🌸', '🌺', '💕', '🌸', '✨', '🌿', '🌺', '🌸'];
+    const symbols = ['🌺', '🌸', '🌺', '💕', '🌸', '✨', '🌿', '🌺', '🌸', '🌴', '🐸', '🇵🇷', '🌺', '🌸'];
     for (let i = 0; i < 30; i++) {
       const span = document.createElement('span');
       span.textContent = symbols[i % symbols.length];
@@ -1066,7 +1108,7 @@
 
       const confettiPieces = [];
       const colors = ['#f4845f', '#f6a560', '#2ec4b6', '#e8726c', '#f2c6de', '#ff6b6b', '#ffd93d', '#6bcb77'];
-      const emojis = ['🌺', '💕', '✨', '🌸', '❤️', '🎉', '🌺', '🌸'];
+      const emojis = ['🌺', '💕', '✨', '🌸', '❤️', '🎉', '🌺', '🌸', '🇵🇷', '🌴', '🐸'];
 
       for (let i = 0; i < 150; i++) {
         confettiPieces.push({
