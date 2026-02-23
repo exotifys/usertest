@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>For Suanli</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Caveat:wght@400;700&family=Patrick+Hand&family=Quicksand:wght@300;400;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --coral: #f4845f;
+      --sunset: #f6a560;
+      --tropical-teal: #2ec4b6;
+      --warm-pink: #e8726c;
+      --sand: #fef3e2;
+      --deep-green: #264653;
+      --lily-white: #faf5ff;
+      --lily-pink: #f2c6de;
+      --chalkboard: #2d4a3e;
+      --chalk: #e8e4d9;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: var(--sand);
+      overflow-x: hidden;
+      color: var(--deep-green);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #fce4ec 0%, #fff3e0 30%, #e0f7fa 70%, #f3e5f5 100%);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse at 20% 80%, rgba(244,132,95,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(46,196,182,0.12) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 4rem;
+      color: var(--warm-pink);
+      opacity: 0;
+      animation: fadeInUp 1.5s ease forwards 0.5s;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.06);
+    }
+
+    .hero p {
+      font-family: 'Caveat', cursive;
+      font-size: 1.8rem;
+      color: var(--coral);
+      margin-top: 1rem;
+      opacity: 0;
+      animation: fadeInUp 1.5s ease forwards 1.2s;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 3rem;
+      opacity: 0;
+      animation: fadeInUp 1.5s ease forwards 2s, bounce 2s ease-in-out infinite 3s;
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.3rem;
+      color: var(--tropical-teal);
+    }
+
+    .scroll-hint .arrow {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 2rem;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    /* ===== FLOATING LILIES ===== */
+    .lily {
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0;
+      font-size: 2rem;
+      animation: floatLily 12s ease-in-out infinite;
+    }
+
+    @keyframes floatLily {
+      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.6; }
+      50% { transform: translateY(-80px) rotate(15deg); }
+    }
+
+    /* ===== TIMELINE SECTION ===== */
+    .timeline-section {
+      padding: 4rem 2rem;
+      background: linear-gradient(180deg, var(--sand) 0%, var(--lily-white) 50%, var(--sand) 100%);
+      position: relative;
+    }
+
+    .timeline-title {
+      text-align: center;
+      font-family: 'Dancing Script', cursive;
+      font-size: 3rem;
+      color: var(--warm-pink);
+      margin-bottom: 3rem;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--lily-pink), var(--coral), var(--tropical-teal), var(--lily-pink));
+      border-radius: 3px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content {
+      margin-left: 55%;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content {
+      margin-right: 55%;
+      text-align: right;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--coral);
+      border: 3px solid var(--lily-white);
+      box-shadow: 0 0 0 4px var(--lily-pink);
+      z-index: 2;
+    }
+
+    .timeline-dot::after {
+      content: '🌺';
+      position: absolute;
+      top: -12px;
+      left: -12px;
+      font-size: 1.2rem;
+    }
+
+    .timeline-content {
+      background: white;
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border: 2px solid var(--lily-pink);
+      position: relative;
+    }
+
+    .timeline-content img {
+      width: 100%;
+      border-radius: 14px;
+      margin-bottom: 1rem;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      background: linear-gradient(135deg, var(--lily-pink), var(--sand));
+    }
+
+    .timeline-content .placeholder-img {
+      width: 100%;
+      border-radius: 14px;
+      margin-bottom: 1rem;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--lily-pink), var(--sand));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .timeline-content h3 {
+      font-family: 'Caveat', cursive;
+      font-size: 1.5rem;
+      color: var(--coral);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-content p {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.1rem;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    /* ===== CHALKBOARD TRANSITION ===== */
+    .chalkboard-section {
+      background: var(--chalkboard);
+      padding: 4rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-top: 12px solid #8B6914;
+      border-bottom: 12px solid #8B6914;
+    }
+
+    .chalkboard-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse at 30% 40%, rgba(255,255,255,0.03) 0%, transparent 70%),
+        repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(255,255,255,0.015) 28px, rgba(255,255,255,0.015) 29px);
+      pointer-events: none;
+    }
+
+    .chalk-text {
+      font-family: 'Patrick Hand', cursive;
+      color: var(--chalk);
+      font-size: 2rem;
+      line-height: 2;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .chalk-text.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .chalk-text .highlight {
+      color: #ffcdd2;
+      font-size: 2.4rem;
+    }
+
+    .chalk-text .name {
+      color: #80cbc4;
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.8rem;
+    }
+
+    .chalk-doodle {
+      font-size: 1.5rem;
+      margin-top: 1rem;
+      opacity: 0.6;
+    }
+
+    /* ===== SCRATCH OFF SECTION ===== */
+    .scratch-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #fff3e0, #fce4ec, #e8f5e9);
+      padding: 3rem 2rem;
+      position: relative;
+    }
+
+    .scratch-instruction {
+      font-family: 'Caveat', cursive;
+      font-size: 2rem;
+      color: var(--coral);
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+      text-align: center;
+    }
+
+    .scratch-instruction.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scratch-container {
+      position: relative;
+      width: 380px;
+      height: 380px;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      touch-action: none;
+    }
+
+    .scratch-reveal {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, #fff, #fce4ec, #fff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .scratch-reveal h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.2rem;
+      color: var(--warm-pink);
+      line-height: 1.4;
+    }
+
+    .scratch-reveal .lilies {
+      font-size: 2.5rem;
+      margin: 0.8rem 0;
+    }
+
+    .scratch-reveal .sub {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.3rem;
+      color: var(--coral);
+      margin-top: 0.5rem;
+    }
+
+    #scratchCanvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      border-radius: 30px;
+    }
+
+    .scratch-hint {
+      margin-top: 1.5rem;
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.2rem;
+      color: var(--tropical-teal);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .scratch-hint.show {
+      opacity: 1;
+    }
+
+    /* ===== QUESTION SECTION ===== */
+    .question-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 50%, #e8eaf6 100%);
+      padding: 3rem 2rem;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .question-section.revealed {
+      opacity: 1;
+    }
+
+    .question-text {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3rem;
+      color: var(--warm-pink);
+      text-align: center;
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.06);
+    }
+
+    .question-text.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .question-text .name {
+      display: block;
+      font-size: 3.8rem;
+      color: var(--coral);
+      margin-bottom: 0.5rem;
+    }
+
+    .buttons-container {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      min-height: 120px;
+    }
+
+    .btn-yes {
+      padding: 1.2rem 3.5rem;
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--coral), var(--warm-pink));
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 8px 30px rgba(244,132,95,0.4);
+      transition: all 0.3s ease;
+      z-index: 10;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    .btn-yes:hover, .btn-yes:active {
+      transform: scale(1.1);
+      box-shadow: 0 12px 40px rgba(244,132,95,0.6);
+    }
+
+    .btn-no {
+      padding: 1rem 2.5rem;
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.5rem;
+      background: #ccc;
+      color: #888;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: absolute;
+      z-index: 10;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    /* ===== CELEBRATION ===== */
+    .celebration {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, #fce4ec, #fff3e0, #e8f5e9);
+      z-index: 1000;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .celebration.active {
+      display: flex;
+      animation: fadeIn 1s ease;
+    }
+
+    .celebration h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.5rem;
+      color: var(--warm-pink);
+      margin-bottom: 1rem;
+      animation: heartbeat 1.5s ease-in-out infinite;
+    }
+
+    .celebration p {
+      font-family: 'Caveat', cursive;
+      font-size: 2rem;
+      color: var(--coral);
+      margin-bottom: 0.5rem;
+    }
+
+    .celebration .big-heart {
+      font-size: 5rem;
+      margin: 1.5rem 0;
+      animation: heartbeat 1.5s ease-in-out infinite;
+    }
+
+    .celebration .lilies-row {
+      font-size: 3rem;
+      margin: 1rem 0;
+    }
+
+    #confettiCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1001;
+    }
+
+    /* ===== PR FLAG COLORS ACCENT ===== */
+    .pr-stripe {
+      height: 4px;
+      background: linear-gradient(90deg,
+        #ed1c24 0% 20%,
+        #fff 20% 40%,
+        #0065b1 40% 60%,
+        #fff 60% 80%,
+        #ed1c24 80% 100%
+      );
+      width: 100%;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* ===== FLOATING HEARTS BACKGROUND ===== */
+    .floating-bg {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .floating-bg span {
+      position: absolute;
+      font-size: 1.5rem;
+      opacity: 0.15;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.15; }
+      90% { opacity: 0.15; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* ===== RESPONSIVE (iPad optimized) ===== */
+    @media (min-width: 768px) and (max-width: 1024px) {
+      .hero h1 { font-size: 5rem; }
+      .hero p { font-size: 2.2rem; }
+      .timeline-title { font-size: 3.5rem; }
+      .scratch-container { width: 420px; height: 420px; }
+      .question-text { font-size: 3.5rem; }
+      .question-text .name { font-size: 4.5rem; }
+    }
+
+    @media (max-width: 600px) {
+      .timeline::before { left: 20px; }
+      .timeline-dot { left: 20px; }
+      .timeline-item:nth-child(odd) .timeline-content,
+      .timeline-item:nth-child(even) .timeline-content {
+        margin-left: 50px;
+        margin-right: 0;
+        text-align: left;
+      }
+      .scratch-container { width: 320px; height: 320px; }
+      .hero h1 { font-size: 3rem; }
+      .question-text { font-size: 2.5rem; }
+      .question-text .name { font-size: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating background elements -->
+  <div class="floating-bg" id="floatingBg"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Suanli...</h1>
+    <p>I made something for you. Scroll down.</p>
+    <div class="scroll-hint">
+      Keep scrolling, mi amor
+      <span class="arrow">&darr;</span>
+    </div>
+  </section>
+
+  <div class="pr-stripe"></div>
+
+  <!-- TIMELINE -->
+  <section class="timeline-section">
+    <h2 class="timeline-title">Our Story So Far</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="placeholder-img" data-slot="1">📸</div>
+          <h3>The Beginning</h3>
+          <p>Where it all started... the moment I knew you were special.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="placeholder-img" data-slot="2">📸</div>
+          <h3>Getting Closer</h3>
+          <p>Every moment with you made me want a thousand more.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="placeholder-img" data-slot="3">📸</div>
+          <h3>That Smile</h3>
+          <p>The way you light up a room... you don't even realize it.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="placeholder-img" data-slot="4">📸</div>
+          <h3>Us</h3>
+          <p>I stopped wondering "what if" and started hoping "what's next."</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="placeholder-img" data-slot="5">📸</div>
+          <h3>Right Now</h3>
+          <p>And that brings us here... keep scrolling.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="pr-stripe"></div>
+
+  <!-- CHALKBOARD TRANSITION -->
+  <section class="chalkboard-section">
+    <div class="chalk-text">
+      You know how you're going to teach kids<br>
+      that <span class="highlight">anything is possible</span>? <br><br>
+      Well, <span class="name">Suanli</span>...<br>
+      You already taught me that. <br><br>
+      <span class="chalk-doodle">🌺 ✏️ 📚 🍎 🌺</span>
+    </div>
+  </section>
+
+  <div class="pr-stripe"></div>
+
+  <!-- SCRATCH OFF -->
+  <section class="scratch-section" id="scratchSection">
+    <div class="scratch-instruction">Scratch below to reveal something...</div>
+    <div class="scratch-container" id="scratchContainer">
+      <div class="scratch-reveal">
+        <div class="lilies">🌸🌺🌸</div>
+        <h2>I have a<br>question<br>for you...</h2>
+        <div class="lilies">🌺🌸🌺</div>
+        <p class="sub">Keep scrolling &darr;</p>
+      </div>
+      <canvas id="scratchCanvas"></canvas>
+    </div>
+    <div class="scratch-hint" id="scratchHint">Use your finger to scratch!</div>
+  </section>
+
+  <div class="pr-stripe"></div>
+
+  <!-- THE QUESTION -->
+  <section class="question-section" id="questionSection">
+    <div class="question-text" id="questionText">
+      <span class="name">Suanli,</span>
+      Will you be my girlfriend? 🌺
+    </div>
+    <div class="buttons-container" id="buttonsContainer">
+      <button class="btn-yes" id="btnYes">Yes!</button>
+      <button class="btn-no" id="btnNo">No</button>
+    </div>
+  </section>
+
+  <!-- CELEBRATION -->
+  <div class="celebration" id="celebration">
+    <p>I knew you'd say...</p>
+    <h1>YES!</h1>
+    <div class="big-heart">❤️</div>
+    <p>Te quiero, Suanli 🌺</p>
+    <div class="lilies-row">🌸🌺🌸🌺🌸</div>
+    <p style="font-size:1.3rem; margin-top:1rem; opacity:0.7; font-family:'Patrick Hand',cursive;">
+      From this moment on, it's you and me.
+    </p>
+  </div>
+  <canvas id="confettiCanvas"></canvas>
+
+  <script>
+    // ===== FLOATING BACKGROUND =====
+    const bgContainer = document.getElementById('floatingBg');
+    const symbols = ['🌺', '🌸', '💕', '✨', '🌿'];
+    for (let i = 0; i < 15; i++) {
+      const span = document.createElement('span');
+      span.textContent = symbols[i % symbols.length];
+      span.style.left = Math.random() * 100 + '%';
+      span.style.animationDuration = (15 + Math.random() * 20) + 's';
+      span.style.animationDelay = (Math.random() * 15) + 's';
+      span.style.fontSize = (1 + Math.random() * 1.5) + 'rem';
+      bgContainer.appendChild(span);
+    }
+
+    // ===== SCROLL ANIMATIONS =====
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.timeline-item').forEach(item => observer.observe(item));
+    document.querySelectorAll('.chalk-text').forEach(item => observer.observe(item));
+    document.querySelectorAll('.scratch-instruction').forEach(item => observer.observe(item));
+
+    // ===== SCRATCH CARD =====
+    const canvas = document.getElementById('scratchCanvas');
+    const ctx = canvas.getContext('2d');
+    const container = document.getElementById('scratchContainer');
+    let isScratching = false;
+    let scratchPercent = 0;
+    let scratchRevealed = false;
+
+    function initScratchCard() {
+      const rect = container.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+
+      // Draw the scratch surface
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, '#f6a560');
+      gradient.addColorStop(0.3, '#f4845f');
+      gradient.addColorStop(0.6, '#e8726c');
+      gradient.addColorStop(1, '#f2c6de');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw pattern on scratch surface
+      ctx.fillStyle = 'rgba(255,255,255,0.15)';
+      ctx.font = '30px serif';
+      for (let x = 0; x < canvas.width; x += 60) {
+        for (let y = 0; y < canvas.height; y += 60) {
+          ctx.fillText('🌺', x + (y % 120 === 0 ? 0 : 30), y);
+        }
+      }
+
+      // Text on scratch surface
+      ctx.fillStyle = 'white';
+      ctx.font = "bold 28px 'Patrick Hand', cursive";
+      ctx.textAlign = 'center';
+      ctx.fillText('Scratch me! ✨', canvas.width / 2, canvas.height / 2 - 10);
+      ctx.font = "22px 'Patrick Hand', cursive";
+      ctx.fillText('Use your finger 👆', canvas.width / 2, canvas.height / 2 + 25);
+    }
+
+    function scratch(x, y) {
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.arc(x, y, 30, 0, Math.PI * 2);
+      ctx.fill();
+      checkScratchProgress();
+    }
+
+    function checkScratchProgress() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      let transparent = 0;
+      for (let i = 3; i < imageData.data.length; i += 4) {
+        if (imageData.data[i] === 0) transparent++;
+      }
+      scratchPercent = (transparent / (imageData.data.length / 4)) * 100;
+
+      if (scratchPercent > 45 && !scratchRevealed) {
+        scratchRevealed = true;
+        canvas.style.transition = 'opacity 1s ease';
+        canvas.style.opacity = '0';
+        setTimeout(() => {
+          canvas.style.display = 'none';
+          revealQuestion();
+        }, 1000);
+      }
+    }
+
+    function revealQuestion() {
+      const questionSection = document.getElementById('questionSection');
+      questionSection.classList.add('revealed');
+      setTimeout(() => {
+        document.getElementById('questionText').classList.add('visible');
+      }, 500);
+    }
+
+    // Touch events (iPad)
+    canvas.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      isScratching = true;
+      const touch = e.touches[0];
+      const rect = canvas.getBoundingClientRect();
+      scratch(touch.clientX - rect.left, touch.clientY - rect.top);
+    }, { passive: false });
+
+    canvas.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      if (!isScratching) return;
+      const touch = e.touches[0];
+      const rect = canvas.getBoundingClientRect();
+      scratch(touch.clientX - rect.left, touch.clientY - rect.top);
+    }, { passive: false });
+
+    canvas.addEventListener('touchend', () => isScratching = false);
+
+    // Mouse events (fallback)
+    canvas.addEventListener('mousedown', (e) => {
+      isScratching = true;
+      const rect = canvas.getBoundingClientRect();
+      scratch(e.clientX - rect.left, e.clientY - rect.top);
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+      if (!isScratching) return;
+      const rect = canvas.getBoundingClientRect();
+      scratch(e.clientX - rect.left, e.clientY - rect.top);
+    });
+
+    canvas.addEventListener('mouseup', () => isScratching = false);
+    canvas.addEventListener('mouseleave', () => isScratching = false);
+
+    // Show hint after delay
+    setTimeout(() => {
+      document.getElementById('scratchHint').classList.add('show');
+    }, 2000);
+
+    // Init scratch card when section comes into view
+    const scratchObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          initScratchCard();
+          scratchObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    scratchObserver.observe(document.getElementById('scratchSection'));
+
+    // ===== NO BUTTON DODGE =====
+    const btnNo = document.getElementById('btnNo');
+    const btnYes = document.getElementById('btnYes');
+    const buttonsContainer = document.getElementById('buttonsContainer');
+    let noAttempts = 0;
+    const noPhrases = [
+      "No", "Are you sure?", "Really??", "Think again!",
+      "Nope, try again 😏", "Can't catch me!", "Wrong answer 😜"
+    ];
+
+    function dodgeNo() {
+      noAttempts++;
+      const containerRect = buttonsContainer.getBoundingClientRect();
+      const btnRect = btnNo.getBoundingClientRect();
+
+      let newX, newY;
+      const maxX = containerRect.width - btnRect.width;
+      const maxY = 200;
+
+      newX = Math.random() * maxX - maxX / 2;
+      newY = Math.random() * maxY - maxY / 2;
+
+      btnNo.style.transform = `translate(${newX}px, ${newY}px)`;
+      btnNo.textContent = noPhrases[Math.min(noAttempts, noPhrases.length - 1)];
+
+      // Make Yes button grow slightly each time
+      const scale = 1 + (noAttempts * 0.05);
+      btnYes.style.transform = `scale(${Math.min(scale, 1.3)})`;
+    }
+
+    btnNo.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      dodgeNo();
+    }, { passive: false });
+
+    btnNo.addEventListener('mouseover', dodgeNo);
+    btnNo.addEventListener('click', (e) => {
+      e.preventDefault();
+      dodgeNo();
+    });
+
+    // ===== YES BUTTON =====
+    btnYes.addEventListener('click', celebrate);
+    btnYes.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      celebrate();
+    });
+
+    function celebrate() {
+      document.getElementById('celebration').classList.add('active');
+      launchConfetti();
+      // Vibrate if supported (iPad won't, but Android will)
+      if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+    }
+
+    // ===== CONFETTI =====
+    function launchConfetti() {
+      const canvas = document.getElementById('confettiCanvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const confettiPieces = [];
+      const colors = ['#f4845f', '#f6a560', '#2ec4b6', '#e8726c', '#f2c6de', '#ff6b6b', '#ffd93d', '#6bcb77'];
+      const emojis = ['🌺', '💕', '✨', '🌸', '❤️', '🎉'];
+
+      for (let i = 0; i < 150; i++) {
+        confettiPieces.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas.height,
+          w: Math.random() * 12 + 6,
+          h: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 10,
+          speedX: (Math.random() - 0.5) * 4,
+          speedY: Math.random() * 4 + 2,
+          emoji: Math.random() > 0.7 ? emojis[Math.floor(Math.random() * emojis.length)] : null
+        });
+      }
+
+      function animateConfetti() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let active = false;
+
+        confettiPieces.forEach(p => {
+          p.x += p.speedX;
+          p.y += p.speedY;
+          p.rotation += p.rotationSpeed;
+          p.speedY += 0.05;
+
+          if (p.y < canvas.height + 50) active = true;
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rotation * Math.PI) / 180);
+
+          if (p.emoji) {
+            ctx.font = '20px serif';
+            ctx.fillText(p.emoji, 0, 0);
+          } else {
+            ctx.fillStyle = p.color;
+            ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          }
+
+          ctx.restore();
+        });
+
+        if (active) requestAnimationFrame(animateConfetti);
+      }
+
+      animateConfetti();
+
+      // Re-launch confetti every few seconds
+      setInterval(() => {
+        confettiPieces.forEach(p => {
+          p.y = Math.random() * -canvas.height;
+          p.x = Math.random() * canvas.width;
+          p.speedY = Math.random() * 4 + 2;
+        });
+        animateConfetti();
+      }, 4000);
+    }
+
+    // Handle resize for scratch card
+    window.addEventListener('resize', () => {
+      if (!scratchRevealed) {
+        initScratchCard();
+      }
+    });
+  </script>
+</body>
+</html>
